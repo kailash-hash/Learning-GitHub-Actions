@@ -29,15 +29,20 @@ jobs:
   job3:
     name: job3
     needs: job1
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     steps:
       - name: job with single responsibility
         run: sleep 10
+      - name: checking for runner information
+        shell: pwsh
+        run: get-computerinfo
  
   job4:
     name: job4
     needs: [job1,job2,job3]
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
     steps:
       - name: job with single responsibility
         run: sleep 10
+      - name: checking for runner information
+        run: sw_vers
