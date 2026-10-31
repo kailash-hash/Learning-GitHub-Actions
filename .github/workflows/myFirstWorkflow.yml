@@ -8,43 +8,16 @@ jobs:
     name: My first job
     runs-on: ubuntu-latest
     steps:
-      - name: Running first command
-        run: 
-          echo "This is my first workflow in GitHub"
-      - name: check OS release for github hosted runner
-        run: 
-          echo cat /etc/*release*
-      - name: Calling sleep
-        run:  sleep 20
-  job2:
-    name: My Second job
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checking the host name
-        run: hostname
-        
-      - name: Running multiple commands
-        run: 
-          echo "Hi from Kailash samge"
-          echo "Current Time is `date`"
-          sleep 20
-  job3:
-    name: job3
-    needs: job1
-    runs-on: windows-latest
-    steps:
-      - name: job with single responsibility
-        run: sleep 10
-      - name: checking for runner information
-        shell: pwsh
-        run: get-computerinfo
- 
-  job4:
-    name: job4
-    needs: [job1,job2,job3]
-    runs-on: macos-latest
-    steps:
-      - name: job with single responsibility
-        run: sleep 10
-      - name: checking for runner information
-        run: sw_vers
+      - name: step 1
+        run: |
+          pwd
+          ls -ltr
+          hostname
+      - name: step 2 - checkout
+        uses: actions/checkout@v5.0.0
+      - name: Step 3
+        run: |
+          pwd
+          ls -ltr
+          hostname
+
