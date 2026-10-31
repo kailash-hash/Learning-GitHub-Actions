@@ -11,4 +11,4 @@ jobs:
           echo "This is my first workflow in GitHub"
       - name: check OS release for github hosted runner
         run: 
-          echo cat /etc/os-release
+          echo cat /etc/*release*
