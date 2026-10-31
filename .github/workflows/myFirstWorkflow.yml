@@ -26,3 +26,18 @@ jobs:
           echo "Hi from Kailash samge"
           echo "Current Time is `date`"
           sleep 20
+  job3:
+    name: job3
+    needs: job1
+    runs-on: ubuntu-latest
+    steps:
+      - name: job with single responsibility
+        run: sleep 10
+ 
+  job4:
+    name: job4
+    needs: [job1,job2,job3]
+    runs-on: ubuntu-latest
+    steps:
+      - name: job with single responsibility
+        run: sleep 10
