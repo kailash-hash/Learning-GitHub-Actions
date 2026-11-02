@@ -3,6 +3,10 @@ name: my-First-Workflow
 on: 
  
   push:
+   branches:
+     - dev
+     - 'feature-*'
+     - main
 jobs:
   job1:
     name: My first job
@@ -59,50 +63,3 @@ jobs:
             uses: actions/download-artifact@v5.0.0
             with:
                 name: single-file
-  job3: 
-        name: JOB3
-        runs-on: ubuntu-latest
-        needs: job2
-        steps:
-          - name: checking current directory
-            run: |
-              pwd
-              ls -ltr
-          - name: download single artifact
-            uses: actions/download-artifact@v5.0.0
-            with:
-                name: directory-file
-          - name: checking current directory post download
-            run: |
-                pwd
-                ls -ltr               
-  job4: 
-        name: JOB4
-        runs-on: ubuntu-latest
-        needs: job1
-        steps:
-          - name : create custom folder for the download
-            run: |
-             mkdir -p single-file
-             mkdir -p download-directory
-          - name: checking current directory
-            run: |
-              pwd
-              ls -ltr
-          - name: download single artifact
-            uses: actions/download-artifact@v5.0.0
-            with:
-                name: single-file
-                path: single-file
-          - name: download single artifact
-            uses: actions/download-artifact@v5.0.0
-            with:
-                name: directory-file
-                path: download-directory
-          - name: checking current directory post download
-            run: |
-                pwd
-                echo "SINGLE FILE DIRECTORY"
-                ls -ltr single-file
-                echo "DIRECTORY ARTIFACTS"
-                ls -ltr download-directory
